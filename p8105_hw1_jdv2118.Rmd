@@ -5,6 +5,37 @@ output: github_document
 
 ```{r}
 library(tidyverse)
+
+library(palmerpenguins)
+```
+
+
+# Problem 1 
+
+```{r}
+
+data("penguins", package = "palmerpenguins")
+
+```
+
+## Description of the "penguins" dataset
+
+The "penguins" dataset consists of 8 variables, which are "species", "island", "bill_length_mm", "bill_depth_mm", "flipper_length_mm", "body_mass_g", "sex", and "year".  The mean of "bill_length_mm" is `r round(mean(pull(penguins, bill_length_mm), na.rm = TRUE), 2)` and the mean of "bill_depth_mm" is `r round(mean(pull(penguins, bill_depth_mm), na.rm = TRUE), 2)`.  The mean of "flipper_length_mm" is `r round(mean(pull(penguins, flipper_length_mm), na.rm = TRUE), 2)` and the mean of "body_mass_g" is `r round(mean(pull(penguins, body_mass_g), na.rm = TRUE), 2)`.  Furthermore, the "penguins" dataset consists of `r nrow(penguins)` rows and `r ncol(penguins)` columns.
+
+## Creating a scatterplot
+
+```{r}
+
+ggplot(penguins, aes(x = bill_length_mm, y = flipper_length_mm, color = species)) + geom_point()
+
+```
+
+## Exporting scatterplot
+
+```{r}
+
+ggsave("scatter_plot.pdf", height = 4, width = 6)
+
 ```
 
 # Problem 2
@@ -22,9 +53,11 @@ problem_2_df =
     character_vector = c("a", "b", "c", "d", "e", "f", "g", "h", "i", "j"),
     factor_vector = factor(c("low", "medium", "high", "low", "medium", "high", "low", "medium", "high",       "low"))
   )
+
+problem_2_df
 ```
 
-## Computing a mean of each variable in the dataframe
+## Computing a mean for each variable in the dataframe
 
 The mean of the "random_sample" variable is `r mean(pull(problem_2_df, random_sample))`.  The mean of the "logical_vector" variable is `r mean(pull(problem_2_df, logical_vector))`.  The mean of the "character_vector" variable cannot be computed as it is not a numeric or logical variable.  The mean of the "character_vector" variable is computed as `r mean(pull(problem_2_df, character_vector))`. The mean of the "factor_vector" variable cannot be computed as it is not a numeric or logical variable.  The mean of the "factor_vector" variable is computed as `r mean(pull(problem_2_df, character_vector))`.  
 
